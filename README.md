@@ -32,12 +32,6 @@ docker run -p 8080:8080 --name demo_crac -it java21-crac
 sdk install java 21.0.1.crac-zulu
 ```
 
-## Run application
-
-```bash 
-java -jar demo.jar
-```
-
 ## Start and stop container
 
 Start container
@@ -82,3 +76,8 @@ siege -c 1 -r 1000 -b http://localhost:8080/actuator/health
 java -XX:CRaCCheckpointTo=cr -jar demo.jar
 ```
 
+## Take a checkpoint
+
+```bash
+jcmd demo.jar JDK.checkpoint
+```

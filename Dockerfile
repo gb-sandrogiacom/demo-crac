@@ -4,7 +4,7 @@ RUN apt-get update
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get -qq -y install curl wget unzip zip
 
-USER ubuntu
+#USER ubuntu
 
 RUN curl -s "https://get.sdkman.io" | bash
 RUN chmod a+x "$HOME/.sdkman/bin/sdkman-init.sh"
