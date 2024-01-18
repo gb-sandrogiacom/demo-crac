@@ -23,7 +23,7 @@ docker rmi java21-crac
 ## Run docker image
 
 ```bash
-docker run -p 8080:8080 --name demo_crac -it java21-crac
+docker run --privileged -p 8080:8080 --name demo_crac -it java21-crac
 ```
 
 ## Install JDK CRaC with SDKMAN
@@ -81,3 +81,10 @@ java -XX:CRaCCheckpointTo=cr -jar demo.jar
 ```bash
 jcmd demo.jar JDK.checkpoint
 ```
+
+## Start app from checkpoint
+
+```bash
+java -XX:CRaCRestoreFrom=cr
+```
+
