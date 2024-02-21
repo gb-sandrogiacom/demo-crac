@@ -8,13 +8,19 @@
 
 ## Build docker image
 
+Build base image:
+
+```bash
+#docker build -t base_crac:21.0.1.crac-zulu -f Dockerfile.base .
+```
+
 Build:
 
 ```bash
 docker build -t java21-crac .
 ```
 
-Remove image:
+Remove image (optional):
 
 ```bash
 docker rmi java21-crac
@@ -29,7 +35,7 @@ docker run --privileged -p 8080:8080 --name demo_crac -it java21-crac
 ## Install JDK CRaC with SDKMAN
 
 ```bash
-sdk install java 21.0.1.crac-zulu
+sdk install java 21.0.2.crac-zulu
 ```
 
 ## Start and stop container
@@ -58,17 +64,6 @@ Enter container
 docker exec -it demo_crac /bin/bash
 ```
 
-# Test application
-
-```bash
-http://localhost:8080/actuator/health
-```
-
-## Test application with Siege
-
-```bash
-siege -c 1 -r 1000 -b http://localhost:8080/actuator/health
-```
 
 ## Start app inside container
 
@@ -88,3 +83,24 @@ jcmd demo.jar JDK.checkpoint
 java -XX:CRaCRestoreFrom=cr
 ```
 
+## Start with Spring Boot parameter
+
+```bash
+
+```
+
+
+# Test application
+
+```bash
+http://localhost:8080/actuator/health
+```
+
+## Test application with Siege
+
+```bash
+siege -c 1 -r 1000 -b http://localhost:8080/actuator/health
+```
+
+
+21.0.1.crac-zulu
