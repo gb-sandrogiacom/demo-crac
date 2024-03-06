@@ -11,7 +11,7 @@
 Build base image:
 
 ```bash
-#docker build -t base_crac:21.0.1.crac-zulu -f Dockerfile.base .
+#docker build -t base_crac:21.0.1.crac-zulu -f Dockerfile.zulu .
 ```
 
 Build:
@@ -29,7 +29,12 @@ docker rmi java21-crac
 ## Run docker image
 
 ```bash
-docker run --privileged -p 8080:8080 --name demo_crac -it java21-crac
+dcoker volume rm crac-files
+docker volume create crac-files
+```
+
+```bash
+docker run --privileged -p 8080:8080 -v crac-files:/home/ubuntu/crac-files --name demo_crac -it java21-crac
 ```
 
 ## Install JDK CRaC with SDKMAN
@@ -86,7 +91,13 @@ java -XX:CRaCRestoreFrom=cr
 ## Start with Spring Boot parameter
 
 ```bash
+java -Dspring.context.checkpoint=onRefresh -XX:CRaCCheckpointTo=cr -jar demo.jar
+```
 
+## Make checkpoint with API
+
+```bash
+curl --location --request POST 'http://localhost:8080/check-point'
 ```
 
 
@@ -99,8 +110,13 @@ http://localhost:8080/actuator/health
 ## Test application with Siege
 
 ```bash
-siege -c 1 -r 1000 -b http://localhost:8080/actuator/health
+siege -c 1 -r 1000 -b http://localhost:8080/hello
 ```
 
 
-21.0.1.crac-zulu
+export DB_PWD=123456
+
+```bash
+curl --location --request POST 'http://localhost:8080/check-point'
+```
+

@@ -1,0 +1,19 @@
+FROM azul/zulu-openjdk:21-jdk-crac-latest
+
+ADD target/demo-crac-0.0.1-SNAPSHOT.jar /home/ubuntu/demo.jar
+WORKDIR /home/ubuntu
+RUN chmod +x demo.jar
+
+# Copy entrypoint script
+COPY entrypoint.sh .
+
+# Make entrypoint script executable
+RUN chmod +x entrypoint.sh
+
+# Use entrypoint script as entrypoint
+ENTRYPOINT ["./entrypoint.sh"]
+#CMD ["/bin/bash"]
+
+
+# docker run --privileged -p 8080:8080 -v crac-files:/home/ubuntu/crac-files --name zulu-demo_crac -it zulu-java21-crac
+# docker run --privileged -p 8080:8080 --name zulu-demo_crac -it zulu-java21-crac
