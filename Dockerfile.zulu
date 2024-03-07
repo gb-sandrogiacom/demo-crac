@@ -15,5 +15,9 @@ ENTRYPOINT ["./entrypoint.sh"]
 #CMD ["/bin/bash"]
 
 
+# docker build -t zulu-java21-crac -f Dockerfile.zulu .
+# docker stop zulu-demo_crac && docker rm zulu-demo_crac
+# docker volume rm crac-files
 # docker run --privileged -p 8080:8080 -v crac-files:/home/ubuntu/crac-files --name zulu-demo_crac -it zulu-java21-crac
-# docker run --privileged -p 8080:8080 --name zulu-demo_crac -it zulu-java21-crac
+# docker exec -it zulu-demo_crac /bin/bash
+# curl -X POST http://localhost:8080/check-point
